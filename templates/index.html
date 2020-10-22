@@ -36,6 +36,25 @@
         {% if config.extra.instantpage_enable -%}
         <script src="{{ get_url(path="js/instantpage.min.js") }}" type="module" defer></script>
         {%- endif %}
+        {% if config.extra.katex_enable %}
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/mathtex-script-type.min.js" integrity="sha384-zWYbd0NBwgTsgIdFKVprSfTh1mbMPe5Hz1X3yY4Sd1h/K1cQoUe36OGwAGz/PcDy" crossorigin="anonymous"></script>
+        {% if config.extra.katex_auto_render %}
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                renderMathInElement(document.body, {
+                    delimiters: [
+                        {left: "$$", right: "$$", display: true},
+                        {left: "\\[", right: "\\]", display: true},
+                        {left: "$", right: "$", display: false},
+                        {left: "\\(", right: "\\)", display: false}
+                    ]
+                });
+            });
+        </script>
+        {% endif %}
+        {% endif %}
         {%- endblock js %}
 
 
@@ -46,6 +65,9 @@
         <link href="{{ get_url(path="fontawesome/fontawesome.css") }}" rel="stylesheet">
         <link href="{{ get_url(path="fontawesome/brands.css") }}" rel="stylesheet">
         <link href="{{ get_url(path="fontawesome/solid.css") }}" rel="stylesheet">
+        {% if config.extra.katex_enable %}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+        {% endif %}
         {%- endblock css %}
 
         <link rel='icon' type='image/x-icon' href="{{ get_url(path="favicon.ico") }}" />
@@ -129,11 +151,6 @@
           gtag('config', '{{ config.extra.analytics }}');
       </script>
       {%- endif %} 
-      {% if config.extra.katex_enable -%}
-      <link rel="stylesheet" href="{{ get_url(path="css/katex.min.css") }}">
-      <script defer src="{{ get_url(path="js/katex.min.js") }}"></script>
-      <script defer src="{{ get_url(path="js/mathtex-script-type.min.js") }}"></script>
-      {%- endif %}
     </body>
 </html>
             
