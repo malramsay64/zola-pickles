@@ -143,10 +143,39 @@ img {
   height: auto;
 }
 
-@import "footer";
-@import "header";
-@import "main";
-@import "nav";
+// Footer
+.l-footer {
+  padding: 24px 0;
+}
+
+// Header
+.l-header {
+  display: block;
+  padding: 20px 0;
+  text-align: center;
+}
+
+// Main
+.l-main {
+  width: 96%;
+  max-width: 720px;
+  margin: 0 auto 0;
+}
+
+// Nav
+.l-nav {
+  width: 96%;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+// Tag List
+.terms {
+    list-style-type: none;
+    padding: 0;
+    line-height: 2em;
+}
+
 @import "object/component/anchor";
 @import "object/component/article";
 @import "object/component/equation";
